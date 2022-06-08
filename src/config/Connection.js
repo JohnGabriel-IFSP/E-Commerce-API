@@ -7,7 +7,7 @@ class Connection {
 
   connectionMongoDB() {
     this.mongoDBConnection = mongoose
-      .connect("mongodb://localhost/UrbanStoreDB")
+      .connect(process.env.MONGO_URL)
       .then(() => {
         console.log("Conectado ao MongoDB");
       })

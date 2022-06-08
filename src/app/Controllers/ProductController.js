@@ -3,13 +3,37 @@ const Product = require("../Models/ProductModel");
 
 class ProductsController {
   async create(req, res) {
-    const { productName, price, description, images, category } = req.body;
-    const data = {
+    const { file1, file2, location: url = "" } = req.files;
+
+    const {
       productName,
+      category,
+      size,
+      inventory,
+      color,
       price,
       description,
-      images,
+    } = req.body;
+    const data = {
+      productName,
       category,
+      size,
+      inventory,
+      color,
+      price,
+      description,
+      imgs: [
+        {
+          url,
+          key: file1[0].key,
+          _id: file1[0].key.split("-")[0],
+        },
+        {
+          url,
+          key: file2[0].key,
+          _id: file2[0].key.split("-")[0],
+        },
+      ],
     };
     await Product.create(data, (error) => {
       if (error) {
@@ -35,6 +59,11 @@ class ProductsController {
       }
       return res.status(200).json(data);
     });
+  }
+
+  async delete(req, res) {
+    await Product.findById(req.params.id).deleteOne();
+    return res.send();
   }
 }
 
