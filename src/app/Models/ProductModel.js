@@ -1,7 +1,4 @@
 const mongoose = require("mongoose");
-const fs = require("fs");
-const path = require("path");
-const { promisify } = require("util");
 
 const Product = mongoose.Schema(
   {
@@ -26,7 +23,7 @@ const Product = mongoose.Schema(
 );
 
 Product.pre("save", function () {
-  for (let i = 0; i < 2; i++) {
+  for (let i = 0; i < 4; i++) {
     if (!this.imgs[i].url) {
       this.imgs[i].url = `${process.env.APP_URL}/files/${this.imgs[i].key}`;
     }

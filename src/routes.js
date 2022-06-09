@@ -8,8 +8,10 @@ const routes = new Router();
 
 const upload = multer(multerConfig);
 const uploadMultiple = upload.fields([
-  { name: "file1", maxCount: 10 },
-  { name: "file2", maxCount: 10 },
+  { name: "imageOne", maxCount: 1 },
+  { name: "imageTwo", maxCount: 1 },
+  { name: "imageThree", maxCount: 1 },
+  { name: "imageFour", maxCount: 1 },
 ]);
 
 routes.post("/CadastrarProduto", uploadMultiple, ProductController.create);

@@ -1,10 +1,13 @@
-const mongoose = require("mongoose");
 const Product = require("../Models/ProductModel");
-
 class ProductsController {
   async create(req, res) {
-    const { file1, file2, location: url = "" } = req.files;
-
+    const {
+      imageOne,
+      imageTwo,
+      imageThree,
+      imageFour,
+      location: url = "",
+    } = req.files;
     const {
       productName,
       category,
@@ -25,13 +28,23 @@ class ProductsController {
       imgs: [
         {
           url,
-          key: file1[0].key,
-          _id: file1[0].key.split("-")[0],
+          key: imageOne[0].key,
+          _id: imageOne[0].key.split("-")[0],
         },
         {
           url,
-          key: file2[0].key,
-          _id: file2[0].key.split("-")[0],
+          key: imageTwo[0].key,
+          _id: imageTwo[0].key.split("-")[0],
+        },
+        {
+          url,
+          key: imageThree[0].key,
+          _id: imageThree[0].key.split("-")[0],
+        },
+        {
+          url,
+          key: imageFour[0].key,
+          _id: imageFour[0].key.split("-")[0],
         },
       ],
     };
