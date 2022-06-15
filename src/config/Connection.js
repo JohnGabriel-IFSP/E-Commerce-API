@@ -1,20 +1,14 @@
-const mongoose = require("mongoose");
+const Sequelize = require('sequelize')
 
-class Connection {
-  constructor() {
-    this.connectionMongoDB();
-  }
+const database = process.env.DATABASE;
+const username = process.env.USERNAME;
+const password = process.env.PASSWORD;
+const host = process.env.HOST;
+const dialect = process.env.DIALECT;
 
-  connectionMongoDB() {
-    this.mongoDBConnection = mongoose
-      .connect(process.env.MONGO_URL)
-      .then(() => {
-        console.log("Conectado ao MongoDB");
-      })
-      .catch((e) => {
-        console.log(`Erro ao conectar ao MongoDB, erro: ${e}`);
-      });
-  }
-}
+const connection = new Sequelize(database, username, password,{
+  host,
+  dialect
+})
 
-module.exports = new Connection();
+module.exports = connection

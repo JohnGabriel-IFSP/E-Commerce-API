@@ -1,7 +1,14 @@
-const app = require("./app");
+const express = require('express')
+const routes = require('./routes')
+const app = express()
+require('dotenv').config()
 
-let PORT = process.env.PORT || 8080;
+const protocol = process.env.PROTOCOL || "http"
+const ip = require('ip').address()
+const port = process.env.PORT || 8080
 
-app.listen(PORT, () => {
-  console.log(`App listen on port ${PORT}`);
-});
+app.use(routes)
+
+app.listen(port, () => console.log(`
+  Server started in http://localhost:${port} or ${protocol}://${ip}:${port}
+`))

@@ -1,23 +1,10 @@
-const { Router } = require("express");
-const multer = require("multer");
-const multerConfig = require("./app/Middlewares/multer");
+const router = require('express').Router()
 
-const ProductController = require("./app/Controllers/ProductController");
+//importando controller
+const UserController = require('./app/Controllers/UserController')
 
-const routes = new Router();
+router.post('/LoginCliente', UserController.LoginCliente)
 
-const upload = multer(multerConfig);
-const uploadMultiple = upload.fields([
-  { name: "imageOne", maxCount: 1 },
-  { name: "imageTwo", maxCount: 1 },
-  { name: "imageThree", maxCount: 1 },
-  { name: "imageFour", maxCount: 1 },
-]);
+router.post('/CadastrarCliente', UserController.CadastrarCliente)
 
-routes.post("/CadastrarProduto", uploadMultiple, ProductController.create);
-
-routes.get("/Products", ProductController.read);
-
-routes.delete("/Products/:id", ProductController.delete);
-
-module.exports = routes;
+module.exports = router

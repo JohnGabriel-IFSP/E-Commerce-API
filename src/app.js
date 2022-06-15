@@ -42,24 +42,3 @@ class App {
 }
 
 module.exports = new App().app;
-
-class App2{
-  constructor(){
-    this.App2 = express();
-    this.routes();
-  }
-
-}
-
-const db = mysql.createPool({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "ustore",
-});
-
-{/*App2.use(express.json());*/}
-
-App2.listen(3001, () => {
-  console.log("Rodando na porta 3001");
-});
