@@ -12,21 +12,22 @@ module.exports = {
     await queryInterface.createTable('users', {
       id:{
         type: Sequelize.INTEGER,
-        primaryKey: true
+        primaryKey: true,
+        autoIncrement: true
       },
       username: {
+        type: Sequelize.TEXT
+      },
+      password: {
         type: Sequelize.TEXT
       },
       userfirstname: {
         type: Sequelize.TEXT
       },
-      email: {
-        type: Sequelize.TEXT
-      },
       usersecondname: {
         type: Sequelize.TEXT
       },
-      password: {
+      email: {
         type: Sequelize.TEXT
       },
       created_at: {

@@ -10,10 +10,10 @@ module.exports = {
     async CadastrarCliente(req, res){
         const response = {...responseModel}
 
-        const {username, password } = req.body;
+        const {username, password, userfirstname, usersecondname, email,  } = req.body;
 
         const [, affecRows] = await connection.query(`
-            INSERT INTO clientes VALUES {DEFAULT, '${username}', '${password}', NOW(), NOW()}
+            INSERT INTO users VALUES (DEFAULT, '${username}', '${password}', '${userfirstname}', '${usersecondname}','${email}', NOW(), NOW())
         `)
 
         response.success = affecRows > 0
@@ -27,7 +27,7 @@ module.exports = {
         const {username, password } = req.body;
 
         const [, data] = await connection.query(`
-            SELECT * FROM clientes WHERE username='${username}' AND password='${password}'
+            SELECT * FROM users WHERE username='${username}' AND password='${password}'
         `)
 
         console.log(data)
