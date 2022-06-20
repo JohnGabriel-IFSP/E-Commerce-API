@@ -1,22 +1,16 @@
 const { Router } = require("express");
-const multer = require("multer");
-const multerConfig = require("./app/Middlewares/multer");
-
 const ProductController = require("./app/Controllers/ProductController");
+const { uploadMultiple } = require("./app/Middlewares/multerMultiple");
 
 const routes = new Router();
 
-const upload = multer(multerConfig);
-const uploadMultiple = upload.fields([
-  { name: "imageOne", maxCount: 1 },
-  { name: "imageTwo", maxCount: 1 },
-  { name: "imageThree", maxCount: 1 },
-  { name: "imageFour", maxCount: 1 },
-]);
-
 routes.post("/CadastrarProduto", uploadMultiple, ProductController.create);
 
-routes.get("/Products", ProductController.read);
+routes.get("/Products", ProductController.readAll);
+
+routes.get("/Products/:id", ProductController.readByID);
+
+routes.put("/UpdateProduct/:id", uploadMultiple, ProductController.update);
 
 routes.delete("/Products/:id", ProductController.delete);
 

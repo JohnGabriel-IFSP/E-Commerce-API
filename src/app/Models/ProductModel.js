@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const Product = mongoose.Schema(
   {
+    _id: { type: String, require: true },
     productName: { type: String, require: true },
     category: { type: String, require: true },
     size: { type: String, require: true },
