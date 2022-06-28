@@ -10,6 +10,13 @@ routes.get("/Products", ProductController.readAll);
 
 routes.get("/Products/:id", ProductController.readByID);
 
+routes.get("/Products/searchByName/:name", ProductController.readByName);
+
+routes.get(
+  "/Products/searchByCategory/:category",
+  ProductController.readByCategory
+);
+
 routes.put("/UpdateProduct/:id", uploadMultiple, ProductController.update);
 
 routes.delete("/Products/:id", ProductController.delete);

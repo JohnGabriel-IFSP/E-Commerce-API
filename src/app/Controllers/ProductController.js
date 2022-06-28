@@ -21,7 +21,7 @@ class ProductsController {
     } = req.body;
     const data = {
       _id,
-      productName,
+      productName: productName.toLowerCase(),
       category,
       size,
       inventory,
@@ -89,6 +89,32 @@ class ProductsController {
     });
   }
 
+  readByName(req, res) {
+    const name = req.params.name;
+    let regex = new RegExp(`${name.toLowerCase()}`);
+    Product.find({ productName: regex }, (error, data) => {
+      if (error) {
+        return res.status(400).json({
+          error: true,
+          message: "Erro ao buscar produtos.",
+        });
+      }
+      return res.status(200).json(data);
+    });
+  }
+
+  readByCategory(req, res) {
+    Product.find({ category: req.params.category }, (error, data) => {
+      if (error) {
+        return res.status(400).json({
+          error: true,
+          message: "Erro ao buscar produtos.",
+        });
+      }
+      return res.status(200).json(data);
+    });
+  }
+
   update(req, res) {
     const {
       imageOne,
@@ -128,7 +154,7 @@ class ProductsController {
       { _id: req.params.id },
       {
         $set: {
-          productName: productName,
+          productName: productName.toLowerCase(),
           category: category,
           size: size,
           inventory: inventory,
