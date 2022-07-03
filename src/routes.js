@@ -1,8 +1,12 @@
 const { Router } = require("express");
 const ProductController = require("./app/Controllers/ProductController");
+const UserController = require("./app/Controllers/UserController");
 const { uploadMultiple } = require("./app/Middlewares/multerMultiple");
 
 const routes = new Router();
+
+routes.post('/LoginCliente', UserController.LoginClient);
+routes.post('/CadastrarCliente', UserController.CadastarCliente);
 
 routes.post("/CadastrarProduto", uploadMultiple, ProductController.create);
 
