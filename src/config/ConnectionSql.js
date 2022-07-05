@@ -4,10 +4,10 @@ const sequelize = require('sequelize');
 
 //conexão com sql
 
-const database = process.env.DATABASE;
-const username = process.env.USERNAME;
-const password = process.env.PASSWORD;
-const host = process.env.HOST;
+const database = 'urbanstoredb';
+const username = 'root';
+const password = '323212';
+const host = 'localhost';
 const dialect = 'mysql';
 
 const connectionSql = new sequelize(database, username, password,{
