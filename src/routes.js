@@ -5,9 +5,11 @@ const { uploadMultiple } = require("./app/Middlewares/multerMultiple");
 
 const routes = new Router();
 
-routes.post('/LoginCliente', UserController.LoginClient);
-routes.post('/CadastrarCliente', UserController.CadastarCliente);
-routes.get('/InfoUser/:username', UserController.InfoClient);
+routes.post("/LoginCliente", UserController.LoginClient);
+
+routes.post("/CadastrarCliente", UserController.CadastarCliente);
+
+routes.get("/InfoUser/:username", UserController.InfoClient);
 
 routes.post("/CadastrarProduto", uploadMultiple, ProductController.create);
 
