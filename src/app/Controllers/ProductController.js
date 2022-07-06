@@ -2,13 +2,7 @@ const Product = require("../Models/ProductModel");
 
 class ProductsController {
   async create(req, res) {
-    const {
-      imageOne,
-      imageTwo,
-      imageThree,
-      imageFour,
-      location: url = "",
-    } = req.files;
+    const { imageOne, imageTwo, imageThree, imageFour } = req.files;
     const {
       _id,
       productName,
@@ -30,22 +24,22 @@ class ProductsController {
       description,
       imgs: [
         {
-          url,
+          url: imageOne[0].location,
           key: imageOne[0].key,
           _id: imageOne[0].key.split("-")[0],
         },
         {
-          url,
+          url: imageTwo[0].location,
           key: imageTwo[0].key,
           _id: imageTwo[0].key.split("-")[0],
         },
         {
-          url,
+          url: imageThree[0].location,
           key: imageThree[0].key,
           _id: imageThree[0].key.split("-")[0],
         },
         {
-          url,
+          url: imageFour[0].location,
           key: imageFour[0].key,
           _id: imageFour[0].key.split("-")[0],
         },
@@ -130,8 +124,6 @@ class ProductsController {
       description,
     } = req.body;
 
-    console.log(imageOne);
-
     let keyOne = imageOne;
     let keyTwo = imageTwo;
     let keyThree = imageThree;
@@ -165,22 +157,22 @@ class ProductsController {
             {
               _id: keyOne.split("-")[0],
               key: keyOne,
-              url: `${process.env.APP_URL}/files/${keyOne}`,
+              url: `https://us-storage-files.s3.sa-east-1.amazonaws.com/${keyOne}`,
             },
             {
               _id: keyTwo.split("-")[0],
               key: keyTwo,
-              url: `${process.env.APP_URL}/files/${keyTwo}`,
+              url: `https://us-storage-files.s3.sa-east-1.amazonaws.com/${keyTwo}`,
             },
             {
               _id: keyThree.split("-")[0],
               key: keyThree,
-              url: `${process.env.APP_URL}/files/${keyThree}`,
+              url: `https://us-storage-files.s3.sa-east-1.amazonaws.com/${keyThree}`,
             },
             {
               _id: keyFour.split("-")[0],
               key: keyFour,
-              url: `${process.env.APP_URL}/files/${keyFour}`,
+              url: `https://us-storage-files.s3.sa-east-1.amazonaws.com/${keyFour}`,
             },
           ],
         },
