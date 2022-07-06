@@ -24,15 +24,11 @@ const Product = mongoose.Schema(
 );
 
 Product.pre("save", function () {
-  for (let i = 0; i < 4; i++) {
-    if (!this.imgs[i].url) {
-      this.imgs[i].url = `${process.env.APP_URL}/files/${this.imgs[i].key}`;
-    }
-  }
+  //salvar url da imagem salva de forma local
 });
 
 Product.pre("deleteOne", { query: true }, function () {
-  let key = this.getQuery()["_id"];
+  //deletar objeto salvo na aws-s3
 });
 
 module.exports = mongoose.model("product", Product);
