@@ -5,6 +5,13 @@ const { uploadMultiple } = require("./app/Middlewares/multerMultiple");
 
 const routes = new Router();
 
+routes.get("/", function (req, res, next) {
+  res.status(200).send({
+    title: "Api E-commerce UrbanStore",
+    version: "0.0.1",
+  });
+});
+
 routes.post("/LoginCliente", UserController.LoginClient);
 
 routes.post("/CadastrarCliente", UserController.CadastarCliente);
