@@ -18,7 +18,6 @@ module.exports = {
       usersecondname,
       email,
     } = req.body;
-    console.log(username, Npassword);
     if (!username || !Npassword)
       return res.json({
         status: "error",
