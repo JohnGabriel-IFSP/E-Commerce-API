@@ -51,9 +51,16 @@ module.exports = {
            
         }
 
+    },
+
+    async InfoClient(req, res){
+
+        const username = req.params.username;
+
+        const [data] = await connection.query(`SELECT * FROM users WHERE username = '${username}'`)
+        if(!data) return res.status(404).json({erro: 'true', message: 'falha ao carregar usuário'})
+        return res.status(200).json(data)
+
     }
     
 }
-
-/*
-                }*/
